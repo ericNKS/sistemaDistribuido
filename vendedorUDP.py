@@ -1,14 +1,12 @@
 # ------------------
-# Cliente Socket UDP
+# Vendedor Socket UDP
 # ------------------
-
-print("Eu sou um CLIENTE UDP!")
 
 # Importando a biblioteca
 import socket
 
 # Definindo ip e porta
-HOST = '192.168.15.187'  # Endereco IP do Servidor
+HOST = '192.168.0.101'  # Endereco IP do Servidor
 PORT = 9000              # Porta que o Servidor estará escutando
 
 # Criando o socket
@@ -17,19 +15,36 @@ cliente = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # Define o endereco do servidor (Ip e porta)
 enderecoServidor = (HOST, PORT)
 
-print("Vou começar a mandar mensagens para o servidor.")
 
 while (True):
 	# Aqui começa a conversa
-	print('''
-		Nome do vendedor
-		''')
-	nomeVendedor = input("Vendedor > ")
-	if nomeVendedor == '5':
+	# Pegando nome do vendedor
+	nomeVendedor = input("Digite seu nome, vendedor: ")
+	IDLoja = input("Digite a identificação da loja: ")
+	dataVenda = input("Data da venda (dd/mm/aaaa): ")
+	valueVenda = input("Valor da venda: ")
+	print("*************************")
+	print("Codigo de Operação")
+	print("1 - Venda")
+	print("5 - Cancelar")
+	print("*************************")
+	codOpe = input("Digito o codigo de operação: ")
+	if codOpe == '5':
+		print("Operação cancelada!!")
 		break
 	# Enviando mensagem ao servidor
-	print("... Vou mandar uma mensagem para o servidor")
-	cliente.sendto(nomeVendedor.encode("utf-8"), enderecoServidor)
+	# Colocando as resposta em um dicionarios
+ 
+	#mensagem = {
+	#	'codOpe': codOpe,
+	#	'nomeVendedor': nomeVendedor,
+	#	'IDLoja': IDLoja,
+	#	'dataVenda': dataVenda,
+	#	'valueVenda': valueVenda,
+	#}
+	mensagem = str(codOpe + '\n' + nomeVendedor + '\n' + IDLoja + '\n' + dataVenda + '\n' + valueVenda)
+	#print("... Vou mandar uma mensagem para o servidor")
+	cliente.sendto(mensagem.encode(), enderecoServidor)
 
 	# Recebendo resposta do servidor
 	msg, endereco = cliente.recvfrom(9000)

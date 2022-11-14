@@ -8,7 +8,7 @@ print("Eu sou um CLIENTE UDP!")
 import socket
 
 # Definindo ip e porta
-HOST = '192.168.15.187'  # Endereco IP do Servidor
+HOST = '192.168.0.101'  # Endereco IP do Servidor
 PORT = 9000              # Porta que o Servidor estará escutando
 
 # Criando o socket

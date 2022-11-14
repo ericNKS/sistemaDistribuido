@@ -8,7 +8,7 @@ import socket
 print("Eu sou o SERVIDOR UDP!")
 
 # definindo ip e porta
-HOST = '192.168.15.187'  # Endereco IP do Servidor
+HOST = '192.168.0.101'  # Endereco IP do Servidor
 PORT = 9000              # Porta que o Servidor ficará escutando
 
 
@@ -22,6 +22,11 @@ while (True):
 	print("-----")
 	# cliente conectou - recuperando informações do cliente
 	msg, enderecoCliente = servidor.recvfrom(9000)
+	mensagem = msg.splitlines(True)
+	for a in mensagem:
+		a.replace("b'", "")
+		a.replace("\n'", "")
+		print(a)
 	print(f"Cliente {enderecoCliente} enviou mensagem")
 	mensagem = msg.decode("utf-8")
 	# tratando a mensagem recebida
