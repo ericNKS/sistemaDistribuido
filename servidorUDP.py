@@ -4,6 +4,7 @@
 
 # importando a biblioteca
 import socket
+import json
 
 print("Eu sou o SERVIDOR UDP!")
 
@@ -22,21 +23,19 @@ while (True):
 	print("-----")
 	# cliente conectou - recuperando informações do cliente
 	msg, enderecoCliente = servidor.recvfrom(9000)
-	mensagem = msg.splitlines(True)
-	for a in mensagem:
-		a.replace("b'", "")
-		a.replace("\n'", "")
-		print(a)
 	print(f"Cliente {enderecoCliente} enviou mensagem")
 	mensagem = msg.decode("utf-8")
+	print(mensagem)
+	mensagem_dict = json.loads(mensagem)
+	
 	# tratando a mensagem recebida
-	if mensagem == '1':
+	if mensagem_dict['codOpe'] == '1':
 		print("Cliente pediu frutas")
 		resposta = "banana, laranja, abacaxi"
-	elif mensagem == '2':
+	elif mensagem_dict['codOpe'] == '2':
 		print("Cliente pediu animais")
 		resposta = "gato, cachorro, papagaio"
-	elif mensagem == '3':
+	elif mensagem_dict['codOpe'] == '3':
 		print("Cliente pediu objetos")
 		resposta = "caneta, sapato, bola"
 	else:

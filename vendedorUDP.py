@@ -2,8 +2,9 @@
 # Vendedor Socket UDP
 # ------------------
 
-# Importando a biblioteca
+# Importações
 import socket
+import json
 
 # Definindo ip e porta
 HOST = '192.168.0.101'  # Endereco IP do Servidor
@@ -35,16 +36,18 @@ while (True):
 	# Enviando mensagem ao servidor
 	# Colocando as resposta em um dicionarios
  
-	#mensagem = {
-	#	'codOpe': codOpe,
-	#	'nomeVendedor': nomeVendedor,
-	#	'IDLoja': IDLoja,
-	#	'dataVenda': dataVenda,
-	#	'valueVenda': valueVenda,
-	#}
-	mensagem = str(codOpe + '\n' + nomeVendedor + '\n' + IDLoja + '\n' + dataVenda + '\n' + valueVenda)
+	mensagem = {
+		'codOpe': codOpe,
+		'nomeVendedor': nomeVendedor,
+		'IDLoja': IDLoja,
+		'dataVenda': dataVenda,
+		'valueVenda': valueVenda,
+	}
+	msgJson = json.dumps(mensagem)
+	print(msgJson)
 	#print("... Vou mandar uma mensagem para o servidor")
-	cliente.sendto(mensagem.encode(), enderecoServidor)
+	cliente.connect(enderecoServidor)
+	cliente.sendall(bytes(msgJson,encoding="utf-8"))
 
 	# Recebendo resposta do servidor
 	msg, endereco = cliente.recvfrom(9000)
