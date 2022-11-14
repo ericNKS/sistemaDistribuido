@@ -33,14 +33,14 @@ while (True):
 	
 	# tratando a mensagem recebida
 	if mensagem_dict['codOpe'] == '1':
-		loja.append(mensagem_dict)
-		resposta = "OK"
+		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or mensagem_dict['dataVenda'] == "" or mensagem_dict['valueVenda'] == "":
+			resposta = "ERRO"
+		else:
+			loja.append(mensagem_dict)
+			resposta = "OK"
 	elif mensagem_dict['codOpe'] == '2':
 		print("Cliente pediu animais")
 		resposta = "gato, cachorro, papagaio"
-	elif mensagem_dict['codOpe'] == '3':
-		print("Cliente pediu objetos")
-		resposta = "caneta, sapato, bola"
 	else:
 		print("Mensagem inválida")
 		resposta = "ERRO"
