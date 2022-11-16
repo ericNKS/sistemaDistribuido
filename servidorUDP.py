@@ -33,18 +33,28 @@ while (True):
 	
 	# tratando a mensagem recebida
 	if mensagem_dict['codOpe'] == '1':
-		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or mensagem_dict['dataVenda'] == "" or mensagem_dict['valueVenda'] == "":
+		# Conferindo se tem algum item vazio
+		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or mensagem_dict['dataVenda'] == "" or mensagem_dict['valorVenda'] == "":
 			resposta = "ERRO"
 		else:
 			loja.append(mensagem_dict)
 			resposta = "OK"
-	elif mensagem_dict['codOpe'] == '2':
-		print("Cliente pediu animais")
-		resposta = "gato, cachorro, papagaio"
+	elif mensagem_dict['codOpe'] == '1g':
+		if len(loja) != 0:
+			vendaTotal = 0.0
+			for venda in loja:
+				if venda['nomeVendedor'] == mensagem_dict['nomeVendedor']:
+					vendaTotal = vendaTotal + float(venda['valorVenda'])
+					resposta = f"R${vendaTotal} vendido"
+				else:
+					resposta = "Vendedor não encontrado"
+		else:
+			resposta = "Nenhuma venda realizada"
 	else:
 		print("Mensagem inválida")
 		resposta = "ERRO"
-	print(len(loja))
+  
+	
 	servidor.sendto(resposta.encode("utf-8"), enderecoCliente)
 print("Encerrando o servidor...")
 servidor.close()

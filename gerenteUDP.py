@@ -6,6 +6,7 @@ print("Eu sou um CLIENTE UDP!")
 
 # Importando a biblioteca
 import socket
+import json
 
 # Definindo ip e porta
 HOST = '192.168.0.101'  # Endereco IP do Servidor
@@ -22,20 +23,34 @@ print("Vou começar a mandar mensagens para o servidor.")
 while (True):
 	# Aqui começa a conversa
 	print('''
-		Escolha:
+       	*************************************************
+		Codigos de Operação
 		1. Total de vendas de um vendedor
 		2. Total de vendas de uma loja
 		3. Total de vendas da rede de lojas em um período 
 		4. Melhor vendedor
 		5. Melhor loja
 		6. Encerrar cliente
+  		*************************************************
 		''')
-	mensagem = input("Pedido > ")
-	if mensagem == '6':
+	codOpe = input("Digito o codigo de operação: ")# Colocando as resposta em um dicionarios
+	mensagem = {
+		'codOpe': codOpe + "g",
+	}
+	if codOpe == '1':
+		nomeVendedor = input('Digite o nome do vendedor: ')
+		mensagem['nomeVendedor'] = nomeVendedor.lower()
+	elif codOpe == '6':
 		break
+
 	# Enviando mensagem ao servidor
-	print("... Vou mandar uma mensagem para o servidor")
-	cliente.sendto(mensagem.encode("utf-8"), enderecoServidor)
+ 
+	
+	msgJson = json.dumps(mensagem)
+	print(msgJson)
+	#print("... Vou mandar uma mensagem para o servidor")
+	cliente.connect(enderecoServidor)
+	cliente.sendall(bytes(msgJson,encoding="utf-8"))
 
 	# Recebendo resposta do servidor
 	msg, endereco = cliente.recvfrom(9000)

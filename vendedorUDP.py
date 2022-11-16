@@ -19,29 +19,30 @@ enderecoServidor = (HOST, PORT)
 
 while (True):
 	# Aqui começa a conversa
-	# Pegando nome do vendedor
-	nomeVendedor = input("Digite seu nome, vendedor: ")
-	IDLoja = input("Digite a identificação da loja: ")
-	dataVenda = input("Data da venda (dd/mm/aaaa): ")
-	valueVenda = input("Valor da venda: ")
-	print("*************************")
-	print("Codigo de Operação")
-	print("1 - Venda")
-	print("5 - Cancelar")
-	print("*************************")
+	print('''
+       	*******************
+		Codigos de Operação
+		1. Realizar Venda
+		5. Encerrar Cliente
+  		*******************
+		''')
 	codOpe = input("Digito o codigo de operação: ")
 	if codOpe == '5':
 		print("Operação cancelada!!")
 		break
+	nomeVendedor = input("Digite seu nome, vendedor: ")
+	IDLoja = input("Digite a identificação da loja: ")
+	dataVenda = input("Data da venda (dd/mm/aaaa): ")
+	valueVenda = input("Valor da venda: ")
 	# Enviando mensagem ao servidor
 	# Colocando as resposta em um dicionarios
  
 	mensagem = {
 		'codOpe': codOpe,
-		'nomeVendedor': nomeVendedor,
+		'nomeVendedor': nomeVendedor.lower(),
 		'IDLoja': IDLoja,
 		'dataVenda': dataVenda,
-		'valueVenda': valueVenda,
+		'valorVenda': valueVenda,
 	}
 	msgJson = json.dumps(mensagem)
 	print(msgJson)
