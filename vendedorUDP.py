@@ -5,6 +5,7 @@
 # Importações
 import socket
 import json
+from datetime import date
 
 # Definindo ip e porta
 HOST = '192.168.0.101'  # Endereco IP do Servidor
@@ -32,7 +33,12 @@ while (True):
 		break
 	nomeVendedor = input("Digite seu nome, vendedor: ")
 	IDLoja = input("Digite a identificação da loja: ")
-	dataVenda = input("Data da venda (dd/mm/aaaa): ")
+	while(True):
+		dataVenda = input("Data da venda (dd/mm/aaaa): ")
+		if len(dataVenda) == 10:
+			break
+		else:
+			print("O formato da data está errada")
 	valueVenda = input("Valor da venda: ")
 	# Enviando mensagem ao servidor
 	# Colocando as resposta em um dicionarios
@@ -41,9 +47,12 @@ while (True):
 		'codOpe': codOpe,
 		'nomeVendedor': nomeVendedor.lower(),
 		'IDLoja': IDLoja,
-		'dataVenda': dataVenda,
+		'diaVenda': dataVenda[0] + dataVenda[1],
+		'mesVenda': dataVenda[3] + dataVenda[4],
+		'anoVenda': dataVenda[6] + dataVenda[7] + dataVenda[8] + dataVenda[9],
 		'valorVenda': valueVenda,
 	}
+	print(f"{mensagem['diaVenda']}/{mensagem['mesVenda']}/{mensagem['anoVenda']}")
 	msgJson = json.dumps(mensagem)
 	print(msgJson)
 	#print("... Vou mandar uma mensagem para o servidor")

@@ -34,7 +34,7 @@ while (True):
 	# tratando a mensagem recebida
 	if mensagem_dict['codOpe'] == '1':
 		# Conferindo se tem algum item vazio
-		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or mensagem_dict['dataVenda'] == "" or mensagem_dict['valorVenda'] == "":
+		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or int(mensagem_dict['diaVenda']) == 0 or int(mensagem_dict['diaVenda']) > 31 or int(mensagem_dict['mesVenda']) > 12 or int(mensagem_dict['mesVenda']) == 0 or int(mensagem_dict['anoVenda']) <= 1900 or mensagem_dict['valorVenda'] == "":
 			resposta = "ERRO"
 		else:
 			loja.append(mensagem_dict)
@@ -62,8 +62,10 @@ while (True):
 			resposta = "Nenhuma venda realizada"
    
 	elif mensagem_dict['codOpe'] == '3g':
-		for a in loja:
-			print(a)
+		if mensagem_dict['anoInicial'] <= mensagem_dict['anoFinal']:
+			resposta = "chegamos no filtro por periodo"
+		else:
+			resposta = "Tempo inicial maior que o tempo final"
 	else:
 		print("Mensagem inválida")
 		resposta = "ERRO"
