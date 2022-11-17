@@ -40,6 +40,9 @@ while (True):
 	if codOpe == '1':
 		nomeVendedor = input('Digite o nome do vendedor: ')
 		mensagem['nomeVendedor'] = nomeVendedor.lower()
+	if codOpe == '2':
+		IDLoja = input('Digite a identificação da loja: ')
+		mensagem['IDLoja'] = IDLoja
 	elif codOpe == '6':
 		break
 

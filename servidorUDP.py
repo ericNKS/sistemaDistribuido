@@ -42,14 +42,28 @@ while (True):
 	elif mensagem_dict['codOpe'] == '1g':
 		if len(loja) != 0:
 			vendaTotal = 0.0
+			resposta = "Vendedor não encontrado" # Resposta padrão para o cliente
 			for venda in loja:
 				if venda['nomeVendedor'] == mensagem_dict['nomeVendedor']:
 					vendaTotal = vendaTotal + float(venda['valorVenda'])
-					resposta = f"R${vendaTotal} vendido"
-				else:
-					resposta = "Vendedor não encontrado"
+					resposta = f"R${vendaTotal} vendido" # Resposta caso encontre o vendedor
 		else:
 			resposta = "Nenhuma venda realizada"
+   
+	elif mensagem_dict['codOpe'] == '2g':
+		if len(loja) != 0:
+			vendaTotal = 0.0
+			resposta = "Loja não encontrada" # Resposta padrão para o cliente
+			for venda in loja:
+				if venda['IDLoja'] == mensagem_dict['IDLoja']:
+					vendaTotal = vendaTotal + float(venda['valorVenda'])
+					resposta = f"R${vendaTotal} vendido" # Resposta caso encontre a loja
+		else:
+			resposta = "Nenhuma venda realizada"
+   
+	elif mensagem_dict['codOpe'] == '3g':
+		for a in loja:
+			print(a)
 	else:
 		print("Mensagem inválida")
 		resposta = "ERRO"
