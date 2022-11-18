@@ -47,9 +47,7 @@ while (True):
 		'codOpe': codOpe,
 		'nomeVendedor': nomeVendedor.lower(),
 		'IDLoja': IDLoja,
-		'diaVenda': dataVenda[0] + dataVenda[1],
-		'mesVenda': dataVenda[3] + dataVenda[4],
-		'anoVenda': dataVenda[6] + dataVenda[7] + dataVenda[8] + dataVenda[9],
+		'dataVenda': dataVenda,
 		'valorVenda': valueVenda,
 	}
 	print(f"{mensagem['diaVenda']}/{mensagem['mesVenda']}/{mensagem['anoVenda']}")

@@ -20,7 +20,12 @@ print("Aguardando cliente...")
 
 # Criando lista da loja
 
-loja = []
+loja = [
+	{'codOpe': '1','nomeVendedor': 'Eric','IDLoja': '1','dataVenda': '2022-01-31','valorVenda': '350'},
+	{'codOpe': '1','nomeVendedor': 'Eric','IDLoja': '1','dataVenda': '2022-03-10','valorVenda': '350'},
+ 	{'codOpe': '1','nomeVendedor': 'Eric','IDLoja': '1','dataVenda': '2022-07-21','valorVenda': '350'},
+	{'codOpe': '1','nomeVendedor': 'Eric','IDLoja': '1','dataVenda': '2022-12-01','valorVenda': '350'}
+]
 
 while (True):
 	print("-----")
@@ -62,10 +67,7 @@ while (True):
 			resposta = "Nenhuma venda realizada"
    
 	elif mensagem_dict['codOpe'] == '3g':
-		if mensagem_dict['anoInicial'] <= mensagem_dict['anoFinal']:
-			resposta = "chegamos no filtro por periodo"
-		else:
-			resposta = "Tempo inicial maior que o tempo final"
+		print("Chegou na parte de ver vendas com um filtro de data")
 	else:
 		print("Mensagem inválida")
 		resposta = "ERRO"
