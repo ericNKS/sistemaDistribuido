@@ -1,0 +1,37 @@
+
+O aplicativo foi criado utilizando sockets, com o objetivo de auxiliar o gerenciamento de venda de uma loja da cidade. 
+Os contratantes explicaram o funcionamento da loja e os requisitos desejados na aplicação. Com base nisso, foi desenvolvido o seguinte aplicativo. 
+
+Dados para modelo de teste: 
+
+Vendedor 
+
+Segue entrada de dados utilizado: 
+- Teste 1
+Código da operação: 1
+Venda realizada por: 2
+Identificação da loja: 4
+Data da venda: 04
+Mês da venda: 11
+Valor da venda: 50,00
+
+Gerente
+- Teste 1: 
+Código de operação: 1
+Vendedor: 2
+
+- Teste 2:
+Código de operação: 2
+Identificação da loja: 4
+
+- Teste 3:
+Código de operação: 3
+
+- Teste 4: 
+Código de operação: 4
+ 
+- Teste 5: 
+Código de operação: 5
+
+
+Observação: A aplicação já foi cadastradas com algumas vendas já solicitadas pelos contratantes. Assim como também com o cadastro definido de vendedores e loja.

@@ -1,4 +1,9 @@
-******* INTEGRANTES DA EQUIPE *******
-
-    Éric Silva dos Santos - 1272122170
-    
+Universidade Salvador - Unifacs
+Matéria: Sistemas Distribuídos 
+Professor: Xavier 
+Alunos e RA: 
+Débora Menezes Silva - 1272116955
+Éric Silva dos Santos - 1272122170
+Jean Willian Teixeira Francisco - 1272228186
+João Vitor Guimarães de Oliveira - 1272118643
+Thiago Rosado Freire Silva - 1272118659
