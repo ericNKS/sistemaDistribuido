@@ -7,7 +7,7 @@ import socket
 import json
 
 # Definindo ip e porta
-HOST = '192.168.0.101'  # Endereco IP do Servidor
+HOST = '192.168.0.102'  # Endereco IP do Servidor
 PORT = 9000              # Porta que o Servidor estará escutando
 
 # Criando o socket

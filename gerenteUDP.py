@@ -9,7 +9,7 @@ print("Eu sou um CLIENTE UDP!")
 # Importando a biblioteca
 
 # Definindo ip e porta
-HOST = '192.168.0.101'  # Endereco IP do Servidor
+HOST = '192.168.0.102'  # Endereco IP do Servidor
 PORT = 9000              # Porta que o Servidor estará escutando
 
 # Criando o socket
@@ -39,13 +39,18 @@ while (True):
         'codOpe': codOpe + "g",
     }
     if codOpe == '1':
-        print('''Vendedores:
-		1 - Lucas
-		2 - Joana
-		3- Mateus
-		4- Paula''')
-        codVend = input('Digite o número do vendedor: ')
-        mensagem['nomeVendedor'] = codVend
+        while(True):
+            print('''Vendedores:
+            1 - Lucas
+            2 - Joana
+            3- Mateus
+            4- Paula''')
+            codVend = input('Digite o número do vendedor: ')
+            if int(codVend) > 0 and int(codVend) < 5:
+                mensagem['nomeVendedor'] = codVend
+                break
+            else:
+                print("Vendedor inválido")
     if codOpe == '2':
         while (True):
             print('''Lojas:
@@ -55,7 +60,7 @@ while (True):
             4- Calçada''')
             codLoja = input('Digite a identificação da loja: ')
         
-            if codLoja > 0 or codLoja < 5:
+            if int(codLoja) > 0 and int(codLoja) < 5:
                 mensagem['IDLoja'] = codLoja
                 break
             else:
@@ -87,7 +92,6 @@ while (True):
     # Enviando mensagem ao servidor
 
     msgJson = json.dumps(mensagem)
-    print(msgJson)
     #print("... Vou mandar uma mensagem para o servidor")
     cliente.connect(enderecoServidor)
     cliente.sendall(bytes(msgJson, encoding="utf-8"))
