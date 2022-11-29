@@ -21,12 +21,12 @@ print("Aguardando cliente...")
 # Criando lista da loja
 
 loja = [
-	{'codOpe': '1','nomeVendedor': '1','IDLoja': '1','dataVenda': '2022-01-31','valorVenda': '350'},
- 	{'codOpe': '1','nomeVendedor': '1','IDLoja': '1','dataVenda': '2022-01-31','valorVenda': '350'},
-	{'codOpe': '1','nomeVendedor': '2','IDLoja': '2','dataVenda': '2022-03-10','valorVenda': '350'},
-	{'codOpe': '1','nomeVendedor': '2','IDLoja': '2','dataVenda': '2022-03-10','valorVenda': '500'},
- 	{'codOpe': '1','nomeVendedor': '3','IDLoja': '3','dataVenda': '2022-07-21','valorVenda': '350'},
-	{'codOpe': '1','nomeVendedor': '4','IDLoja': '4','dataVenda': '2022-12-01','valorVenda': '350'}
+	{'codOpe': '1','nomeVendedor': '1','IDLoja': '1','valorVenda': '350', 'diaVenda': '01', 'mesVenda': '01', 'anoVenda': '1983'},
+ 	{'codOpe': '1','nomeVendedor': '1','IDLoja': '1','valorVenda': '350', 'diaVenda': '01', 'mesVenda': '03', 'anoVenda': '2000'},
+	{'codOpe': '1','nomeVendedor': '2','IDLoja': '2','valorVenda': '350', 'diaVenda': '01', 'mesVenda': '01', 'anoVenda': '2010'},
+	{'codOpe': '1','nomeVendedor': '2','IDLoja': '2','valorVenda': '500', 'diaVenda': '01', 'mesVenda': '08', 'anoVenda': '2010'},
+ 	{'codOpe': '1','nomeVendedor': '3','IDLoja': '3','valorVenda': '350', 'diaVenda': '01', 'mesVenda': '08', 'anoVenda': '2020'},
+	{'codOpe': '1','nomeVendedor': '4','IDLoja': '4','valorVenda': '350', 'diaVenda': '01', 'mesVenda': '11', 'anoVenda': '2022'}
 ]
 
 
@@ -42,7 +42,7 @@ while (True):
 	# tratando a mensagem recebida
 	if mensagem_dict['codOpe'] == '1':
 		# Conferindo se tem algum item vazio
-		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or int(mensagem_dict['diaVenda']) == 0 or int(mensagem_dict['diaVenda']) > 31 or int(mensagem_dict['mesVenda']) > 12 or int(mensagem_dict['mesVenda']) == 0 or int(mensagem_dict['anoVenda']) <= 1900 or mensagem_dict['valorVenda'] == "":
+		if mensagem_dict['nomeVendedor'] == "" or mensagem_dict['IDLoja'] == "" or int(mensagem_dict['diaVenda']) == 0 or int(mensagem_dict['diaVenda']) > 31 or int(mensagem_dict['mesVenda']) > 12 or int(mensagem_dict['mesVenda']) == 0 or int(mensagem_dict['anoVenda']) <= 1980 or mensagem_dict['valorVenda'] == "":
 			resposta = "ERRO"
 		else:
 			loja.append(mensagem_dict)
@@ -71,6 +71,20 @@ while (True):
    
 	elif mensagem_dict['codOpe'] == '3g':
 		resposta = "Chegou na parte de ver vendas com um filtro de data"
+  
+		# data inicial
+		anoInicial = int(mensagem_dict['dataInicial'])
+		# data final
+		anoFinal = int(mensagem_dict['dataFinal'])
+		
+		# variavel de total de venda
+		totalVenda = 0.0
+		#logica
+		for venda in loja:
+			if int(venda['anoVenda']) >= anoInicial and int(venda['anoVenda']) <= anoFinal:
+				totalVenda = totalVenda + float(venda['valorVenda'])
+		resposta = f"O total de venda entre {anoInicial} - {anoFinal} foi de R${totalVenda}"
+  
   
 	elif mensagem_dict['codOpe'] == '4g':
 		totalVendedor = [

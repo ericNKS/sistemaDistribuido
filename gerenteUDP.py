@@ -27,7 +27,7 @@ while (True):
 		Codigos de Operação
 		1. Total de vendas de um vendedor
 		2. Total de vendas de uma loja
-		3. Total de vendas em um período
+		3. Total de vendas em um período de ano
 		4. Melhor vendedor
 		5. Melhor loja
 		6. Encerrar cliente
@@ -68,24 +68,16 @@ while (True):
     if codOpe == '3':
         while (True):
             dataInicial = input(
-                'Digite a data inicial de procura (dd/mm/aaaa): ')
-            dataFinal = input('Digite a data final de procura (dd/mm/aaaa): ')
-            if len(dataInicial) == 10 and len(dataFinal) == 10:
+                'Digite o ano inicial de procura: ')
+            dataFinal = input('Digite o ano final de procura: ')
+            if len(dataInicial) == 4 and len(dataFinal) == 4:
                 # Data inicial
-                diaInicial = dataInicial[0] + dataInicial[1]
-                mesInicial = dataInicial[3] + dataInicial[4]
-                anoInicial = dataInicial[6] + dataInicial[7] + \
-                    dataInicial[8] + dataInicial[9]
-                mensagem['dataInicial'] = f"{anoInicial}-{mesInicial}-{diaInicial}"
+                mensagem['dataInicial'] = dataInicial
                 # Data final
-                diaFinal = dataFinal[0] + dataFinal[1]
-                mesFinal = dataFinal[3] + dataFinal[4]
-                anoFinal = dataFinal[6] + dataFinal[7] + \
-                    dataFinal[8] + dataFinal[9]
-                mensagem['dataFinal'] = f"{anoFinal}-{mesFinal}-{diaFinal}"
+                mensagem['dataFinal'] = dataFinal
                 break
             else:
-                print("Formato de uma das datas está errada")
+                print("O ano esta errado")
     elif codOpe == '6':
         break
 

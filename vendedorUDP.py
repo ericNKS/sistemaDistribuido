@@ -59,6 +59,9 @@ while (True):
     while (True):
         dataVenda = input("Data da venda (dd/mm/aaaa): ")
         if len(dataVenda) == 10:
+            mensagem['diaVenda'] = dataVenda[:2]
+            mensagem['mesVenda'] = dataVenda[3:5]
+            mensagem['anoVenda'] = dataVenda[6:11]
             break
         else:
             print("O formato da data está errada")
@@ -70,7 +73,6 @@ while (True):
         'codOpe': codOpe,
         'nomeVendedor': codVend,
         'IDLoja': codLoja,
-        'dataVenda': dataVenda,
         'valorVenda': valueVenda,
     }
     print(
