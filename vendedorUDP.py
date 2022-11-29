@@ -30,15 +30,19 @@ while (True):
     if codOpe == '5':
         print("Operação cancelada!!")
         break
+    mensagem = {
+        'codOpe': codOpe,
+    }
     while (True):
         print('''Vendedores:
         1 - Lucas 
         2 - Joana
         3- Mateus
         4- Paula''')
-        codVend = input("Produto vendido por: (Digite o número)")
+        codVend = input("Produto vendido por: (Digite o número): ")
 
-        if codVend > 0 or codVend < 5:
+        if int(codVend) > 0 or int(codVend) < 5:
+            mensagem['nomeVendedor'] = codVend
             break
         else:
             print("Vendedor inválido")
@@ -49,9 +53,10 @@ while (True):
             2 - Barra
             3- Comércio 
             4- Calçada''')
-        codLoja = input('Produto vendido pela loja: (Digite o número da identificação)')
+        codLoja = input('Produto vendido pela loja: (Digite o número da identificação): ')
 
-        if codLoja > 0 or codLoja < 5:
+        if int(codLoja) > 0 or int(codLoja) < 5:
+            mensagem['IDLoja'] = codLoja
             break
         else:
             print("Loja inválida")
@@ -66,15 +71,11 @@ while (True):
         else:
             print("O formato da data está errada")
     valueVenda = input("Valor da venda: ")
+    mensagem['valorVenda'] = valueVenda
     # Enviando mensagem ao servidor
     # Colocando as resposta em um dicionarios
 
-    mensagem = {
-        'codOpe': codOpe,
-        'nomeVendedor': codVend,
-        'IDLoja': codLoja,
-        'valorVenda': valueVenda,
-    }
+    
     print(
         f"{mensagem['diaVenda']}/{mensagem['mesVenda']}/{mensagem['anoVenda']}")
     msgJson = json.dumps(mensagem)
