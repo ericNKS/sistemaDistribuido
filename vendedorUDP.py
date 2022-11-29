@@ -31,30 +31,29 @@ while (True):
         print("Operação cancelada!!")
         break
     while (True):
-        
         print('''Vendedores:
-		1 - Lucas 
-		2 - Joana
-		3- Mateus
-		4- Paula''')
-	 	codVend = input("Produto vendido por: (Digite o número)")
-   
-	 	if codVend > 0 or codVend < 5:
-			break
-		else:
+        1 - Lucas 
+        2 - Joana
+        3- Mateus
+        4- Paula''')
+        codVend = input("Produto vendido por: (Digite o número)")
+
+        if codVend > 0 or codVend < 5:
+            break
+        else:
             print("Vendedor inválido")
             
     while (True):
         print('''Lojas:
-           1 - Pituba
-           2 - Barra
-           3- Comércio 
-           4- Calçada''')
+            1 - Pituba
+            2 - Barra
+            3- Comércio 
+            4- Calçada''')
         codLoja = input('Produto vendido pela loja: (Digite o número da identificação)')
-        
+
         if codLoja > 0 or codLoja < 5:
             break
-		else:
+        else:
             print("Loja inválida")
             
     while (True):

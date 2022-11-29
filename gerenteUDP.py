@@ -47,13 +47,19 @@ while (True):
         codVend = input('Digite o número do vendedor: ')
         mensagem['nomeVendedor'] = codVend
     if codOpe == '2':
-        print('''Lojas:
-           1 - Pituba
-           2 - Barra
-           3- Comércio
-           4- Calçada''')
-        codLoja = input('Digite a identificação da loja: ')
-        mensagem['IDLoja'] = codLoja
+        while (True):
+            print('''Lojas:
+            1 - Pituba
+            2 - Barra
+            3- Comércio 
+            4- Calçada''')
+            codLoja = input('Digite a identificação da loja: ')
+        
+            if codLoja > 0 or codLoja < 5:
+                mensagem['IDLoja'] = codLoja
+                break
+            else:
+                print("Loja inválida")
     if codOpe == '3':
         while (True):
             dataInicial = input(
